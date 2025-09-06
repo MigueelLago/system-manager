@@ -15,12 +15,6 @@ var architectures = map[string]string{
 	"arm64": "ARM64",
 }
 
-type SystemInfo struct {
-	OS      string `json:"os"`
-	Version string `json:"version"`
-	Arch    string `json:"arch"`
-}
-
 func GetOS() string {
 	osName := runtime.GOOS
 
