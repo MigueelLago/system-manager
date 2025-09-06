@@ -3,21 +3,29 @@ package main
 import (
 	"fmt"
 	"system-manager/internal/hardware"
+	"system-manager/internal/system"
 )
 
 func main() {
-	systemInfo := hardware.GetSystemInfo()
 
-	fmt.Println("Sistema operacional:", systemInfo.OS)
-	fmt.Println("Arquitetura:", systemInfo.Arch)
-	fmt.Println("Versão do SO:", systemInfo.Version)
-	fmt.Println("Informações da CPU:", "Modelo:", systemInfo.CPU.ModelName, ", Núcleos físicos:", systemInfo.CPU.Cores, ","+
+	memoryInfo, _ := hardware.GetMemoryInfo()
+	cpuInfo, _ := hardware.GetCPUInfo()
+	osName := system.GetOS()
+	osArch := system.GetArch()
+	osVersion := system.GetSystemVersion()
+	motherBoard := hardware.GetMotherBoard()
+	biosInfo := hardware.GetBIOSInfo()
+
+	fmt.Println("Sistema operacional:", osName)
+	fmt.Println("Arquitetura:", osArch)
+	fmt.Println("Versão do SO:", osVersion)
+	fmt.Println("Informações da CPU:", "Modelo:", cpuInfo.ModelName, ", Núcleos físicos:", cpuInfo.Cores, ","+
 		" "+
 		"Núcleos lógicos:",
-		systemInfo.CPU.LogicsCores)
-	fmt.Println("Placa-mãe:", systemInfo.Board)
-	fmt.Println("BIOS:", systemInfo.Bios)
-	fmt.Println("Memória RAM total (GB):", systemInfo.Memory.TotalGB)
-	fmt.Println("Memória RAM disponível (GB):", systemInfo.Memory.AvailableGB)
-	fmt.Println("Memória RAM usada (GB):", systemInfo.Memory.UsedGB)
+		cpuInfo.LogicsCores)
+	fmt.Println("Placa-mãe:", motherBoard)
+	fmt.Println("BIOS:", biosInfo)
+	fmt.Println("Memória RAM total (GB):", memoryInfo.TotalGB)
+	fmt.Println("Memória RAM disponível (GB):", memoryInfo.AvailableGB)
+	fmt.Println("Memória RAM usada (GB):", memoryInfo.UsedGB)
 }
