@@ -15,4 +15,9 @@ func main() {
 		" "+
 		"Núcleos lógicos:",
 		systemInfo.CPU.LogicsCores)
+	fmt.Println("Placa-mãe:", systemInfo.Board)
+	fmt.Println("BIOS:", systemInfo.Bios)
+	fmt.Println("Memória RAM total (GB):", systemInfo.Memory.TotalGB)
+	fmt.Println("Memória RAM disponível (GB):", systemInfo.Memory.AvailableGB)
+	fmt.Println("Memória RAM usada (GB):", systemInfo.Memory.UsedGB)
 }
